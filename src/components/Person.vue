@@ -23,7 +23,7 @@ const changeName = ()=>{
   <hr>
   <p>{{ person.description }}</p>
 
-  <button @click="changeName">Change Person</button>
+  <!-- <button @click="changeName">Change Person</button> -->
 </template>
 
 <style scoped>
