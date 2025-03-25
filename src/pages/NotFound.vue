@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+
+axios.get()
+.then((result) => {
+  
+}).catch((err) => {
+  
+});
+</script>
 
 <template>
   <h1>Page not found</h1>
