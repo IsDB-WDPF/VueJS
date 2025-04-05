@@ -1,37 +1,45 @@
 <script setup>
-import axios from "axios";
+import api from "@/Api";
 import { onMounted, reactive, ref } from "vue";
 
 console.clear();
 
-let trialBalance = reactive([]);
+let merpRoles = reactive([]);
 onMounted(() => {
-  axios
-    .get("https://helal.devdelwar.com/laravel/public/api/trialBalance")
+  fetchRoles();
+});
+
+
+
+const fetchRoles = ()=>{
+  api.get("/roles")
     .then((result) => {
-      trialBalance = result.data;
-      console.log(result.data[0]);
+      merpRoles = result.data;
+      console.clear()
+      console.log(result.data);
     })
     .catch((err) => {
       console.log(err);
     });
-});
+}
 </script>
 
 <template>
-  <table class="bordered rounded table table-striped table-dark">
+  <table class="bordered rounded table table-striped table-dark w-50 mx-auto">
     <thead>
       <tr>
-        <th>Description</th>
-        <th>Debit</th>
-        <th>Credit</th>
+        <th>ID</th>
+        <th>Role</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-    <tr v-for="item in trialBalance[0]">
+    <tr v-for="item in merpRoles">
+    <td>{{item.id}}</td>
     <td>{{item.name}}</td>
-    <td>{{item.total_debit}}</td>
-    <td>{{item.total_credit}}</td>
+    <td>
+      <RouterLink :to="`/roles/edit/${item.id}`">Edit</RouterLink>
+    </td>
     </tr>
     </tbody>
   </table>
