@@ -2,9 +2,10 @@
 import api from "@/Api";
 import { onMounted, reactive, ref } from "vue";
 
-console.clear();
+// console.clear();
 
-let merpRoles = reactive([]);
+let merpRoles = ref([]);
+
 onMounted(() => {
   fetchRoles();
 });
@@ -22,6 +23,7 @@ const fetchRoles = ()=>{
       console.log(err);
     });
 }
+
 </script>
 
 <template>

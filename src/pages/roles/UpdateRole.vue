@@ -18,6 +18,7 @@ const formData= reactive({
     name:""
 });
 
+// formData.id = id;
 onMounted(() => {
     fetchRole()
 });
@@ -25,28 +26,28 @@ onMounted(() => {
 const fetchRole = () => {
     api.get(`/roles/`+id)
         .then((result) => {
+            console.clear();
             console.log(result.data);
-            // formData.id=  result.data.roles.id
-            // formData.name=  result.data.roles.name
+            formData.id=  result.data.id
+            formData.name=  result.data.name
         }).catch((err) => {
             console.log(err);
         });
 }
-
-
 
 const submitData= ()=>{
 
     api.put("/roles/"+formData.id, formData)
     .then((result) => {
         console.log(result.data);
-        router.push('/roles');
+        // router.push('/roles');
     }).catch((err) => {
         console.log(err);
     });
 
 
 }
+console.log(formData);
 
 
 </script>
